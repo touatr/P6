@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //Fonction d'usine qui construit la biographie de chaque photographe
 function photographersFactory(data) {
     const { id, name, city, tagline, country, price, portrait } = data;//remplacer les
@@ -59,3 +60,4 @@ function photographerPageFactory(data) {
 
     return { getPhotographerPage };
 }
+
