@@ -56,6 +56,10 @@ h1 {
     font-weight: normal;
 }
 
+#photograph-header article {
+    display: flex;
+}
+
 #photograph-header article h2 {
     color: #D3573C;
     font-size: 56px;
@@ -107,7 +111,7 @@ h1 {
 }
 
 #photograph-header img {
-    margin-left: 20rem;
+    margin-left: 22rem;
 }
 
 section {
