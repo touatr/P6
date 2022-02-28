@@ -1,5 +1,5 @@
 //Récupérer les données Json des photographes
-/*async function getPhotographers() {
+async function getPhotographers() {
 	let photographers = await fetch("../../data/photographers.json");
 	photographers = await photographers.json();
 	return photographers;
@@ -39,84 +39,8 @@ function getPhotographerPage() {
     img.setAttribute("src", picture);
     photographHeader.appendChild(img);
     return (description);
-}*/
+}
 
-//Tableau photographers qui contient des objets
-const photographers = [
-    {
-        "name": "Mimi Keel",
-        "id": 243,
-        "city": "London",
-        "country": "UK",
-        "tagline": "Voir le beau dans le quotidien",
-        "price": 400,
-        "portrait": "assets/photographers/MimiKeel.jpg"
-    },
-    {
-        "name": "Ellie-Rose Wilkens",
-        "id": 930,
-        "city": "Paris",
-        "country": "France",
-        "tagline": "Capturer des compositions complexes",
-        "price": 250,
-        "portrait": "assets/photographers/EllieRoseWilkens.jpg"
-    },
-    {
-        "name": "Tracy Galindo",
-        "id": 82,
-        "city": "Montreal",
-        "country": "Canada",
-        "tagline": "Photographe freelance",
-        "price": 500,
-        "portrait": "assets/photographers/TracyGalindo.jpg"
-    },
-    {
-        "name": "Nabeel Bradford",
-        "id": 527,
-        "city": "Mexico City",
-        "country": "Mexico",
-        "tagline": "Toujours aller de l'avant",
-        "price": 350,
-        "portrait": "assets/photographers/NabeelBradford.jpg"
-    },
-    {
-        "name": "Rhode Dubois",
-        "id": 925,
-        "city": "Barcelona",
-        "country": "Spain",
-        "tagline": "Je crée des souvenirs",
-        "price": 275,
-        "portrait": "assets/photographers/RhodeDubois.jpg"
-    },
-    {
-        "name": "Marcel Nikolic",
-        "id": 195,
-        "city": "Berlin",
-        "country": "Germany",
-        "tagline": "Toujours à la recherche de LA photo",
-        "price": 300,
-        "portrait": "assets/photographers/MarcelNikolic.jpg"
-    }
-]
-
-//Construction de l'élément photograph-header
-const photographHeader = document.getElementById('photograph-header');
-const description = document.createElement('article');
-photographHeader.appendChild(description);
-const h2 = document.createElement('h2');
-h2.textContent = photographers[0].name;
-description.appendChild(h2);
-const h3 = document.createElement('h3');
-h3.textContent = photographers[0].city +  ", " + photographers[0].country;
-description.appendChild(h3);
-const p = document.createElement('p');
-p.textContent = photographers[0].tagline;
-description.appendChild(p);
-const button = document.querySelector('.contact_button');
-photographHeader.appendChild(button);
-const img = document.createElement('img');
-img.setAttribute("src", photographers[0].portrait);
-photographHeader.appendChild(img);
 
 //Création de la partie Trier par
 const mediaSection = document.createElement('section');

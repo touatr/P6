@@ -1,13 +1,14 @@
 //Fonction d'usine qui construit la biographie de chaque photographe
 function photographersFactory(data) {
-    const { name, city, tagline, country, price, portrait } = data;//remplacer les
+    const { id, name, city, tagline, country, price, portrait } = data;//remplacer les
 
     const picture = `assets/photographers/${portrait}`;
+
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );//créer un élement article
         const photographerLinkPage = document.createElement('a');
-        photographerLinkPage.setAttribute("href", "photographer.html?id=");
+        photographerLinkPage.setAttribute("href", "photographer.html?id");
         const img = document.createElement( 'img' );//Créer un élement img
         img.setAttribute("src", picture)//Affecter une image et une src
         photographerLinkPage.appendChild(img);
