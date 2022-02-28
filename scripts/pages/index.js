@@ -1,13 +1,15 @@
 async function getPhotographers() {
 	let photographers = await fetch("../../data/photographers.json");
 	photographers = await photographers.json();
+    console.log(photographers)
 	return photographers;
 }
 
-async function displayData(photographers) {
+function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
     photographers.forEach((photographer) => {
+
         const photographerModel = photographersFactory(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
         photographersSection.appendChild(userCardDOM);
