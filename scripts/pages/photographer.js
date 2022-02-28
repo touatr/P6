@@ -47,13 +47,17 @@ mediaSection.appendChild(h4);
 const ul = document.createElement('ul');
 mediaSection.appendChild(ul);
 const angleUp = document.createElement('i');
+const angleDown = document.createElement('i');
 angleUp.setAttribute('class', 'fa-solid fa-angle-up');
+angleUp.style.display = 'none';
+angleDown.setAttribute('class', 'fa-solid fa-chevron-down');
 const popular = document.createElement('li');
 popular.setAttribute('class', 'popular');
 const popularAngleUp = document.createElement('div');
 popularAngleUp.setAttribute('class', 'popular-angleUp');
 ul.appendChild(popularAngleUp);
 popularAngleUp.appendChild(angleUp);
+popularAngleUp.appendChild(angleDown);
 popularAngleUp.appendChild(popular);
 const date = document.createElement('li');
 date.setAttribute('class', 'date');
@@ -65,10 +69,22 @@ title.textContent = "Titre";
 ul.appendChild(date);
 ul.appendChild(title);
 
+
 //Cette fonction affiche le bloc Trier par
 function displayOrderBy() {
     title.style.display = 'block';
-    date.style.display = 'block'; 
+    date.style.display = 'block';
+    angleDown.style.display = 'none';
+    angleUp.style.display = 'block'; 
 }
 
-angleUp.addEventListener('click', displayOrderBy);
+//Cette fonction masque le bloc Trier par
+function hiddenOrderBy() {
+    title.style.display = 'none';
+    date.style.display = 'none';
+    angleDown.style.display = 'block';
+    angleUp.style.display = 'none'; 
+}
+
+angleDown.addEventListener('click', displayOrderBy);
+angleUp.addEventListener('click', hiddenOrderBy);
