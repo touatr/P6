@@ -6,16 +6,13 @@ async function getPhotographers() {
     // étape 1 : récupérer l'id en paramètre avec URLSearchParams
     //Récupérer la chaine de requête dans l'url
     const queryString = window.location.search;
-    console.log(queryString);
     //Récupérer l'id depuis l'url
     const urlSearchParams = new URLSearchParams(queryString);
-    console.log(urlSearchParams);
     const id = urlSearchParams.get("id");
     console.log(id);
 
     // étape 2 : filtrer les photographes pour ne récupérer que celui avec l'id qu'on a récupéré
     let photograph = photographersData.photographers.filter((photographer) => photographer.id == id );
-    console.log(photograph);
 
 	return photograph[0];
 }
@@ -33,9 +30,12 @@ async function init() {
     const photographer = await getPhotographers();
     console.log(photographer);
     displayDataPhotograh(photographer);
+    //Récupére les photos d'un photographe
+    const photographerMedia = await getPhotographerMedia();
+    console.log(photographerMedia);
+    displayPhotographerMedia(photographerMedia);
 };
 
-init();
 
 //Création de la partie Trier par
 const mediaSection = document.createElement('section');
@@ -86,5 +86,40 @@ function hiddenOrderBy() {
     angleUp.style.display = 'none'; 
 }
 
+//Ecouter les événements click des icones angleUp et angleDown
 angleDown.addEventListener('click', displayOrderBy);
 angleUp.addEventListener('click', hiddenOrderBy);
+
+
+//Récupérer les medias d'un photographe grâce à l'id
+async function getPhotographerMedia() {
+    let photographers = await fetch("../../data/photographers.json");
+    let media = await photographers.json();
+    console.log(media);
+
+    // étape 1 : récupérer l'id en paramètre avec URLSearchParams
+    //Récupérer la chaine de requête dans l'url
+    const queryString = window.location.search;
+    //Récupérer l'id depuis l'url
+    const urlSearchParams = new URLSearchParams(queryString);
+    const id = urlSearchParams.get("id");
+
+     // étape 2 : filtrer les médias d'un photographe grâce à son id
+     let photographMedia = media.media.filter((pictures) => pictures.photographerId == id );
+
+     return photographMedia;
+}
+
+function displayPhotographerMedia(media) {
+    const photographerMedia = document.querySelector('.photographer-media');
+
+    //Parcourir tout le tableau media pour afficher toutes les données de l'objet media
+    media.forEach((media) => {
+
+        const mediaModel = mediaPhotographerFactory(media);
+        const mediaCardDOM = mediaModel.getMediaCardDOM();
+        photographerMedia.appendChild(mediaCardDOM);
+    });
+};
+
+init();
