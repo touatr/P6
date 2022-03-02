@@ -38,14 +38,12 @@ async function init() {
 
 
 //Création de la partie Trier par
-const mediaSection = document.createElement('section');
-const main = document.querySelector('main');
-main.appendChild(mediaSection);
+const trierPar = document.querySelector('.trier-par');
 const h4 = document.createElement('h4');
 h4.textContent = "Trier par";
-mediaSection.appendChild(h4);
+trierPar.appendChild(h4);
 const ul = document.createElement('ul');
-mediaSection.appendChild(ul);
+trierPar.appendChild(ul);
 const angleUp = document.createElement('i');
 const angleDown = document.createElement('i');
 angleUp.setAttribute('class', 'fa-solid fa-angle-up');

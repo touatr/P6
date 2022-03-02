@@ -7,7 +7,6 @@ function mediaPhotographerFactory(data) {
     function getMediaCardDOM() {
         const photographerMedia = document.createElement('article');
         //Vérifier si la media est au format image ou video
-        //let extentionsPicture = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
         let extentionsMovie = /(\.mp4|\.ogg)$/i;
 
         if(!extentionsMovie.exec(film)) {
@@ -24,9 +23,19 @@ function mediaPhotographerFactory(data) {
             console.log(movie);
         }
 
+        //Création du bloc description media
+        const mediaDescription = document.createElement('div');
+        mediaDescription.setAttribute('class', 'media-description');
+        photographerMedia.appendChild(mediaDescription);
         const h3 = document.createElement('h3');
         h3.textContent = title;
-        photographerMedia.appendChild(h3);
+        mediaDescription.appendChild(h3);
+        const numberLikes = document.createElement('p');
+        numberLikes.textContent = likes;
+        mediaDescription.appendChild(numberLikes);
+        const heart = document.createElement('i');
+        heart.setAttribute('class', 'fa-solid fa-heart');
+        mediaDescription.appendChild(heart);
         return (photographerMedia);
     }
     return { getMediaCardDOM };

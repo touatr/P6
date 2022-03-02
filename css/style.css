@@ -71,12 +71,12 @@ h1 {
 .photographer_section article h3 {
     margin-top: 0;
     margin-bottom: 0;
-    font-size:medium;
+    font-size: medium;
     color: #901C1C;
     font-weight: normal;
 }
 
-#photograph-header h3 {
+#photograph-header h3, .photographer-media h3, p {
     margin-top: 0.5rem;
     font-size:x-large;
     color: #901C1C;
@@ -114,17 +114,19 @@ h1 {
     margin-left: 22rem;
 }
 
-section {
+.trier-par {
+    position: absolute;
+    top: -13rem;
     margin-left: 90px;
-    margin-top: 4rem;
+    margin-top: 6rem;
     display: flex;
 }
 
-section h4 {
+.trier-par h4 {
     font-size: 20px;
 }
 
-section ul {
+.trier-par ul {
     background: #901C1C;
     list-style: none;
     color: white;
@@ -135,7 +137,7 @@ section ul {
     padding-right: 10px;
 }
 
-section ul li {
+.trier-par ul li {
     border-top: 1px solid white;
     font-size: 20px;
     font-weight: bold;
@@ -145,7 +147,7 @@ section ul li {
     padding-left: 10px;
 }
 
-.popular {
+.trier-par .popular-angleUp .popular {
     border: none;
     padding-top: 10px;
 }
@@ -166,8 +168,40 @@ section ul li {
     cursor: pointer;
 }
 
-section  .title, .date {
+.trier-par  .title, .date {
     display: none;
 }
+
+.photographer-media {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 11.5rem;
+}
+
+.photographer-media img, video {
+    width: 350px;
+    height: 300px;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-left: 6rem;
+}
+
+.photographer-media h3 {
+    margin-left: 6rem;
+    width: 300px;
+}
+
+.photographer-media .media-description {
+    display: flex;
+    align-items: baseline;
+}
+
+.photographer-media i {
+    color: #901C1C;
+    font-size: 22px;
+}
+
+
 
 
