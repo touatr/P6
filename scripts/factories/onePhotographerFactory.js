@@ -7,7 +7,7 @@ function onePhotographerFactory(data) {
         //Construction de l'élément photograph-header
         const description = document.createElement('article');
         const text = document.createElement('aside');
-        description.appendChild(text);
+        description.appendChild(text)
         const h2 = document.createElement('h2');
         h2.textContent = name;
         text.appendChild(h2);
