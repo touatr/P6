@@ -197,9 +197,15 @@ h1 {
     align-items: baseline;
 }
 
-.photographer-media i {
+.photographer-media .fa-heart {
     color: #901C1C;
     font-size: 22px;
+    cursor: pointer;
+}
+
+.popular-angleUp i {
+    color: white;
+    font-size: medium;
 }
 
 

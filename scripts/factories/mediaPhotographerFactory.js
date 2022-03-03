@@ -1,11 +1,17 @@
+let totalLikes = 0;
+
 function mediaPhotographerFactory(data) {
-    const {date, likes, photographerId, price, title, video, image} = data;
+    let {likes, price, title, video, image} = data;
 
     const picture = `assets/photographers/${image}`;
     const film = `assets/photographers/${video}`;
 
     function getMediaCardDOM() {
         const photographerMedia = document.createElement('article');
+        //Affichage des nombres de likes total et prix /jour
+        let totalOfLikes = document.querySelector('.total-of-likes');
+        totalLikes = totalLikes + likes
+        totalOfLikes.innerHTML = totalLikes;
         //Vérifier si la media est au format image ou video
         let extentionsMovie = /(\.mp4|\.ogg)$/i;
 
@@ -30,12 +36,19 @@ function mediaPhotographerFactory(data) {
         const h3 = document.createElement('h3');
         h3.textContent = title;
         mediaDescription.appendChild(h3);
-        const numberLikes = document.createElement('p');
-        numberLikes.textContent = likes;
+        let numberLikes = document.createElement('p');
+        numberLikes.innerHTML = likes;
         mediaDescription.appendChild(numberLikes);
         const heart = document.createElement('i');
         heart.setAttribute('class', 'fa-solid fa-heart');
         mediaDescription.appendChild(heart);
+        //Incrémenter le nombre de likes lorsque l'utilisateur clique sur le coeur
+        heart.addEventListener('click', function() {//fonction de callback
+            likes++;
+            totalLikes++;
+            numberLikes.innerHTML = likes;
+            totalOfLikes.innerHTML = totalLikes;
+        });
         return (photographerMedia);
     }
     return { getMediaCardDOM };
