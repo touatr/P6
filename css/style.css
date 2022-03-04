@@ -162,6 +162,10 @@ h1 {
     flex-direction: row-reverse;
 }
 
+.title, .popular {
+    cursor: pointer;
+}
+
 .popular-angleUp i {
     font-size: larger;
     padding-right: 10px;

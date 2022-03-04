@@ -40,10 +40,15 @@ async function init() {
     displayDataPhotograh(photographer);
     //Récupére les photos d'un photographe
     const photographerMedia = await getPhotographerMedia();
-    console.log(photographerMedia);
     displayPhotographerMedia(photographerMedia);
     //Affiche le prix d'un photographe
     displayPhotographPrice(photographer);
+    //Récupére les photos d'un photographe triés par popularité
+    const photographerMediaPopular = await getPhotographerMediaByPopular();
+
+    popular.addEventListener('click', function() {
+        displayPhotographerMediaByPopular(photographerMediaPopular);   
+    }) 
 };
 
 
@@ -118,6 +123,29 @@ async function getPhotographerMedia() {
      return photographMedia;
 }
 
+//Récupérer les medias d'un photographe grâce au plus grand nombre de likes 
+//en les triant du plus populaire au moins populaire
+async function getPhotographerMediaByPopular() {
+    let photographers = await fetch("../../data/photographers.json");
+    let media = await photographers.json();
+    console.log(media);
+
+    // étape 1 : récupérer l'id en paramètre avec URLSearchParams
+    //Récupérer la chaine de requête dans l'url
+    const queryString = window.location.search;
+    //Récupérer l'id depuis l'url
+    const urlSearchParams = new URLSearchParams(queryString);
+    const id = urlSearchParams.get("id");
+
+     // étape 2 : filtrer les médias d'un photographe grâce à l'id du pohotographe
+     let photographMedia = media.media.filter((pictures) => pictures.photographerId == id);
+     //Trier le tableau media par ordre décroissant en fonction du nombre de likes
+     photographMedia.sort(function (a, b) {//fonction qui trie le tableau media dans l'ordre décroissant
+        return b.likes - a.likes;
+     });
+     return photographMedia;
+}
+
 function displayPhotographerMedia(media) {
     const photographerMedia = document.querySelector('.photographer-media');
 
@@ -126,6 +154,18 @@ function displayPhotographerMedia(media) {
 
         const mediaModel = mediaPhotographerFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
+        photographerMedia.appendChild(mediaCardDOM);
+    });
+};
+
+function displayPhotographerMediaByPopular(media) {
+    const photographerMedia = document.querySelector('.photographer-media');
+
+    //Parcourir tout le tableau media pour afficher toutes les données de l'objet media
+    media.forEach((media) => {
+
+        const mediaModel = photographerMediaByPopularFactory(media);
+        const mediaCardDOM = mediaModel.getMediaCardDOMPopular();
         photographerMedia.appendChild(mediaCardDOM);
     });
 };
