@@ -209,5 +209,34 @@ h1 {
 }
 
 
+.total-of-likes_bloc .total-of-likes {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
 
+.total-of-likes_bloc .fa-heart {
+    color: black;
+    cursor: none;
+    margin-left: 8px;
+    margin-top: 0.8rem;
+}
+
+.price-day h3 {
+   
+    color: black;
+    font-weight: bold;
+}
+
+.photographer-media .total-of-likes_bloc {
+    display: flex;
+    position: absolute;
+    top: -11.8rem;
+    left: 8rem;
+    background: #D3573C;
+    padding-top: 1rem;
+    padding-left: 2rem;
+    width: 21.5%;
+    border-radius: 4px;
+}
 

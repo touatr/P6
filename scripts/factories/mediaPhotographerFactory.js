@@ -53,3 +53,20 @@ function mediaPhotographerFactory(data) {
     }
     return { getMediaCardDOM };
 }
+
+//Factory qui affiche le prix d'un photographe
+function photographerPriceFactory(data) {
+    const {price} = data;
+
+    function getCardDOMPrice() {
+        const priceDay = document.createElement('aside');
+        const photographPrice = document.createElement('h3');
+        photographPrice.textContent = price + "€" + " " + "/ " + "jour";
+        const totalOfLikes = document.querySelector('.price-day');
+        totalOfLikes.appendChild(priceDay);
+        priceDay.appendChild(photographPrice);
+        return (priceDay);
+    }
+
+    return { getCardDOMPrice };
+}

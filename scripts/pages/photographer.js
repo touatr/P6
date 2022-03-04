@@ -25,6 +25,14 @@ function displayDataPhotograh(photographer) {
     photographHeader.appendChild(userCardDOM);
 };
 
+function displayPhotographPrice(photographer) {
+    const priceDay = document.querySelector('.price-day');
+
+    const photographerModel = photographerPriceFactory(photographer);
+    const cardDOMPrice = photographerModel.getCardDOMPrice();
+    priceDay.appendChild(cardDOMPrice);
+};
+
 async function init() {
     // Récupère les datas des photographes
     const photographer = await getPhotographers();
@@ -34,6 +42,8 @@ async function init() {
     const photographerMedia = await getPhotographerMedia();
     console.log(photographerMedia);
     displayPhotographerMedia(photographerMedia);
+    //Affiche le prix d'un photographe
+    displayPhotographPrice(photographer);
 };
 
 
