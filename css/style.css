@@ -114,19 +114,15 @@ h1 {
     margin-left: 22rem;
 }
 
-.trier-par {
-    position: absolute;
-    top: -13rem;
+#main .info-bar {
     margin-left: 90px;
-    margin-top: 6rem;
-    display: flex;
 }
 
-.trier-par h4 {
+.info-bar .info-bar-title {
     font-size: 20px;
 }
 
-.trier-par ul {
+.info-bar select {
     background: #901C1C;
     list-style: none;
     color: white;
@@ -137,7 +133,7 @@ h1 {
     padding-right: 10px;
 }
 
-.trier-par ul li {
+.info-bar select option {
     border-top: 1px solid white;
     font-size: 20px;
     font-weight: bold;
@@ -147,40 +143,31 @@ h1 {
     padding-left: 10px;
 }
 
-.trier-par .popular-angleUp .popular {
+.info-bar select .popular {
     border: none;
     padding-top: 10px;
 }
 
-.title {
+.info-bar select .title {
     padding-bottom: 5px;
 }
 
-.popular-angleUp {
+select {
     display: flex;
     align-items: baseline;
     flex-direction: row-reverse;
 }
 
-.title, .popular {
+ .title, .popular {
     cursor: pointer;
 }
 
-.popular-angleUp i {
-    font-size: larger;
-    padding-right: 10px;
-    cursor: pointer;
-}
-
-.trier-par  .title, .date {
-    display: none;
-}
 
 .photographer-media, .photographer-media-popular {
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 11.5rem;
+    margin-top: 3rem;
 }
 
 .photographer-media img, video, .photographer-media-popular img, video {
@@ -201,7 +188,7 @@ h1 {
     align-items: baseline;
 }
 
-.photographer-media .fa-heart, .photographer-media-popular .fa-heart {
+.photographer-media .fa-heart, .photographer-media-popular .fa-heart, .total-of-likes_bloc .fa-heart {
     color: #901C1C;
     font-size: 22px;
     cursor: pointer;
@@ -223,24 +210,27 @@ h1 {
     color: black;
     cursor: none;
     margin-left: 8px;
-    margin-top: 0.8rem;
+    margin-top: 12px;
 }
 
 .price-day h3 {
    
     color: black;
     font-weight: bold;
+    margin-left: 7rem;
+    margin-top: 13px;
 }
-
-.photographer-media .total-of-likes_bloc, .photographer-media-popular .total-of-likes_bloc {
+ 
+.total-of-likes_bloc, .photographer-media-popular .total-of-likes_bloc {
     display: flex;
-    position: absolute;
-    top: -11.8rem;
-    left: 8rem;
+    position: fixed;
+    bottom: 0rem;
+    right: 8rem;
     background: #D3573C;
     padding-top: 1rem;
     padding-left: 2rem;
-    width: 21.5%;
+    padding-right: 2rem;
+    /*width: 21.5%;*/
     border-radius: 4px;
 }
 

@@ -68,7 +68,7 @@ function displayPhotographerMediaByPopular(photographer) {
     });
 };
 
-//Afficher le bloc Trier par
+/*Afficher le bloc Trier par
  //Création de la partie Trier par
  const trierPar = document.querySelector('.trier-par');
  const h4 = document.createElement('h4');
@@ -105,19 +105,7 @@ function displayPhotographerMediaByPopular(photographer) {
      date.style.display = 'block';
      angleDown.style.display = 'none';
      angleUp.style.display = 'block'; 
- }
-
- //Cette fonction masque le bloc Trier par
- function hiddenOrderBy() {
-     title.style.display = 'none';
-     date.style.display = 'none';
-     angleDown.style.display = 'block';
-     angleUp.style.display = 'none'; 
- }
-
- //Ecouter les événements click des icones angleUp et angleDown
- angleDown.addEventListener('click', displayOrderBy);
- angleUp.addEventListener('click', hiddenOrderBy);
+ }*/
 
 //Fonction principale qui lance toutes les fonctions 
 async function init() {

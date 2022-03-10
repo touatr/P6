@@ -16,16 +16,24 @@
       <div id="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
+
+      <form class="info-bar">
+        <label for="trier-par" class="info-bar-title">Trier Par</label>
+        <select name="info-bar" id="info-bar-select">
+          <option value="popularité" class="popular">Popularité</option>
+          <option value="titre" class="title">Titre</option>
+          <option value="date" class="date">Date</option>
+        </select>
+      </form>
+
       <div class="photographer-media">
-        <article class="total-of-likes_bloc">
-          <div class="total-of-likes">
-          </div>
-          <i class ="fa-solid fa-heart"></i>
-          <aside class="price-day"></aside>
-        </article>
-        <div class="trier-par">
-        </div>
       </div>
+      <article class="total-of-likes_bloc">
+        <div class="total-of-likes">
+        </div>
+        <i class ="fa-solid fa-heart"></i>
+        <aside class="price-day"></aside>
+      </article>
     </main>
     <div id="contact_modal">
 			<div class="modal">
