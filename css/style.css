@@ -176,14 +176,14 @@ h1 {
     display: none;
 }
 
-.photographer-media {
+.photographer-media, .photographer-media-popular {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     margin-top: 11.5rem;
 }
 
-.photographer-media img, video {
+.photographer-media img, video, .photographer-media-popular img, video {
     width: 350px;
     height: 300px;
     border-radius: 4px;
@@ -191,17 +191,17 @@ h1 {
     margin-left: 6rem;
 }
 
-.photographer-media h3 {
+.photographer-media h3, .photographer-media-popular h3 {
     margin-left: 6rem;
     width: 300px;
 }
 
-.photographer-media .media-description {
+.photographer-media .media-description, .photographer-media-popular, .media-description {
     display: flex;
     align-items: baseline;
 }
 
-.photographer-media .fa-heart {
+.photographer-media .fa-heart, .photographer-media-popular .fa-heart {
     color: #901C1C;
     font-size: 22px;
     cursor: pointer;
@@ -232,7 +232,7 @@ h1 {
     font-weight: bold;
 }
 
-.photographer-media .total-of-likes_bloc {
+.photographer-media .total-of-likes_bloc, .photographer-media-popular .total-of-likes_bloc {
     display: flex;
     position: absolute;
     top: -11.8rem;

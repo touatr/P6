@@ -69,7 +69,7 @@ function photographerPriceFactory(data) {
     return { getCardDOMPrice };
 }
 
-
+//Factory qui affiche le bloc des médias triès par popularité
 function photographerMediaByPopularFactory(data) {
     let {likes, title, video, image} = data;
     const picture = `assets/photographers/${image}`;
@@ -81,9 +81,9 @@ function photographerMediaByPopularFactory(data) {
         let totalOfLikes = document.querySelector('.total-of-likes');
         totalLikes = totalLikes + likes
         totalOfLikes.innerHTML = totalLikes;
+
         //Vérifier si la media est au format image ou video
         let extentionsMovie = /(\.mp4|\.ogg)$/i;
-
         if(!extentionsMovie.exec(film)) {
             const img = document.createElement('img');
             img.setAttribute('src', picture);
