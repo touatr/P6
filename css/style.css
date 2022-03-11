@@ -2,7 +2,7 @@
 
 body {
     font-family: "DM Sans", sans-serif;
-    margin: 0;
+    margin-right: 4rem;
     margin-bottom: 4rem;
 }
 
@@ -35,6 +35,7 @@ h1 {
 }
 
 #photograph-header {
+    position: relative;
     display: flex;
     margin-top: 8rem;
     margin-left: 8rem;
@@ -114,81 +115,104 @@ h1 {
     margin-left: 22rem;
 }
 
-#main .info-bar {
-    margin-left: 90px;
+#photograph-header .info-bar {
+    position: absolute;
+    display: flex;
+    left: -3rem;
+    top: 13rem;
+    z-index: 1;
 }
 
-.info-bar .info-bar-title {
+.info-bar #trier-par {
     font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-top: 1.5rem;
 }
 
-.info-bar select {
+.info-bar ul {
     background: #901C1C;
     list-style: none;
     color: white;
-    padding: 1rem;
     border-radius: 5px;
     margin-left: 1.5rem;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
+    padding-top: 25px;
 }
 
-.info-bar select option {
-    border-top: 1px solid white;
-    font-size: 20px;
+.info-bar ul li {
+    font-size: 18px;
     font-weight: bold;
-    padding-bottom: 15px;
-    padding-top: 15px;
-    padding-right: 1.5rem;
-    padding-left: 10px;
+    border-top: 1px solid white;
+    padding-left: 1rem;
 }
 
-.info-bar select .popular {
-    border: none;
-    padding-top: 10px;
+ .title, .popular, .date {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
-.info-bar select .title {
-    padding-bottom: 5px;
+.info-bar .date, .title {
+    display: none;
 }
 
-select {
+.popular-angle {
     display: flex;
-    align-items: baseline;
-    flex-direction: row-reverse;
 }
 
- .title, .popular {
+.popular-angle i {
+    margin-left: 1.5rem;
+    margin-top: 3px;
+}
+
+.popular-angle .fa-angle-up {
+    display: none;
+}
+
+.info-bar li, .popular-angle i {
     cursor: pointer;
+    padding-right: 1rem;
+    font-size: larger;
 }
 
+.popular-angle .popular {
+    border-top: none;
+    padding-top: 0rem;
+}
 
-.photographer-media, .photographer-media-popular {
+.photographer-media {
     position: relative;
+    width: 95%;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 3rem;
+    margin-top: 11.5rem;
+    margin-left: -0.6rem;
+    z-index: 0;
 }
 
-.photographer-media img, video, .photographer-media-popular img, video {
+.photographer-media article {
     width: 350px;
+    margin-left: 6rem;
+}
+
+.photographer-media img, video {
+    width: 100%;
     height: 300px;
     border-radius: 4px;
     object-fit: cover;
-    margin-left: 6rem;
 }
 
-.photographer-media h3, .photographer-media-popular h3 {
-    margin-left: 6rem;
+.photographer-media h3 {
     width: 300px;
 }
 
-.photographer-media .media-description, .photographer-media-popular, .media-description {
+.photographer-media .media-description {
     display: flex;
+    justify-content: space-between;
     align-items: baseline;
 }
 
-.photographer-media .fa-heart, .photographer-media-popular .fa-heart, .total-of-likes_bloc .fa-heart {
+.photographer-media .fa-heart {
     color: #901C1C;
     font-size: 22px;
     cursor: pointer;
@@ -209,19 +233,19 @@ select {
 .total-of-likes_bloc .fa-heart {
     color: black;
     cursor: none;
+    font-size: x-large;
     margin-left: 8px;
     margin-top: 12px;
 }
 
 .price-day h3 {
-   
-    color: black;
-    font-weight: bold;
     margin-left: 7rem;
     margin-top: 13px;
+    margin-top: 10px;
+    font-size: 24px;
 }
  
-.total-of-likes_bloc, .photographer-media-popular .total-of-likes_bloc {
+.total-of-likes_bloc {
     display: flex;
     position: fixed;
     bottom: 0rem;
@@ -230,7 +254,6 @@ select {
     padding-top: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
-    /*width: 21.5%;*/
     border-radius: 4px;
 }
 

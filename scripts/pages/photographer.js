@@ -68,44 +68,30 @@ function displayPhotographerMediaByPopular(photographer) {
     });
 };
 
-/*Afficher le bloc Trier par
- //Création de la partie Trier par
- const trierPar = document.querySelector('.trier-par');
- const h4 = document.createElement('h4');
- h4.textContent = "Trier par";
- trierPar.appendChild(h4);
- const ul = document.createElement('ul');
- trierPar.appendChild(ul);
- const angleUp = document.createElement('i');
- const angleDown = document.createElement('i');
- angleUp.setAttribute('class', 'fa-solid fa-angle-up');
- angleUp.style.display = 'none';
- angleDown.setAttribute('class', 'fa-solid fa-chevron-down');
- const popular = document.createElement('li');
- popular.setAttribute('class', 'popular');
- const popularAngleUp = document.createElement('div');
- popularAngleUp.setAttribute('class', 'popular-angleUp');
- ul.appendChild(popularAngleUp);
- popularAngleUp.appendChild(angleUp);
- popularAngleUp.appendChild(angleDown);
- popularAngleUp.appendChild(popular);
- const date = document.createElement('li');
- date.setAttribute('class', 'date');
- const title = document.createElement('li');
- title.setAttribute('class', 'title');
- popular.textContent = "Popularité";
- date.textContent = "Date";
- title.textContent = "Titre";
- ul.appendChild(date);
- ul.appendChild(title);
-
+//Afficher et masquer les info de info-bar
+const angleUp = document.querySelector('.fa-angle-up');
+const angleDown = document.querySelector('.fa-chevron-down');
+const date = document.querySelector('.date');
+const title = document.querySelector('.title');
+ 
  //Cette fonction affiche le bloc Trier par
- function displayOrderBy() {
+function displayOrderBy() {
      title.style.display = 'block';
      date.style.display = 'block';
      angleDown.style.display = 'none';
      angleUp.style.display = 'block'; 
- }*/
+}
+
+function hiddenOrderBy() {
+    title.style.display = 'none';
+    date.style.display = 'none';
+    angleDown.style.display = 'block';
+    angleUp.style.display = 'none';
+}
+
+//Ecouter les évenements quand on clique sur l'info-bar pour afficher ou masquer les éléments
+angleDown.addEventListener('click', displayOrderBy);
+angleUp.addEventListener('click', hiddenOrderBy);
 
 //Fonction principale qui lance toutes les fonctions 
 async function init() {
@@ -116,7 +102,6 @@ async function init() {
     const photographerMedia = photographerData[1];
     //affiche les données d'un photographe
     displayPhotographerData(photographer);
-    console.log(photographer);
     //Affiche le prix d'un photographe
     displayPhotographerPrice(photographer);
     //Affiche les photos et vidéos d'un photographe
