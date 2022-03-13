@@ -1,3 +1,12 @@
+//Déclaration des variables globales
+const angleUp = document.querySelector('.fa-angle-up');
+const angleDown = document.querySelector('.fa-chevron-down');
+const date = document.querySelector('.date');
+const title = document.querySelector('.title');
+const popular = document.querySelector('.popular');
+const popularChoice = document.querySelectorAll('li');
+const photographerMedia = document.querySelectorAll('.photographer-media');
+
 //Récupérer toutes les données Json d'un photographe
 async function getPhotographerData() {
 	let photographers = await fetch("../../data/photographers.json");
@@ -14,10 +23,10 @@ async function getPhotographerData() {
     let photographer = photographersData.photographers.filter((photographer) => photographer.id == id );
     // étape 2 : filtrer les médias d'un photographe grâce à son id
     let media = photographersData.media.filter((pictures) => pictures.photographerId == id );
+
     //Déclarer un tableau contenant deux valeurs
     let photographerData = [photographer, media];
-
-	return photographerData;
+    return photographerData;
 }
 
 
@@ -43,36 +52,26 @@ function displayPhotographerPrice(photographer) {
 
 //Afficher les médias du photographe sélectionné
 function displayPhotographerMedia(media) {
-    const photographerMedia = document.querySelector('.photographer-media');
-
+    
     //Parcourir tout le tableau media pour afficher toutes les données de l'objet media
     media.forEach((media) => {
 
         const mediaModel = mediaPhotographerFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
-        photographerMedia.appendChild(mediaCardDOM);
+        photographerMedia[0].appendChild(mediaCardDOM);
     });
 };
 
 //Afficher les médias d'un photographe triès par popularité
-function displayPhotographerMediaByPopular(photographer) {
-    media = photographer[1];
-    const photographerPopularMedia = document.querySelector('.photographer-media');
-
+function displayPhotographerMediaByPopular(media) {
     //Parcourir tout le tableau media pour afficher toutes les données de l'objet media
     media.forEach((media) => {
 
         const mediaModel = photographerMediaByPopularFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOMPopular();
-        photographerPopularMedia.appendChild(mediaCardDOM);
+        photographerMedia[1].appendChild(mediaCardDOM);
     });
 };
-
-//Afficher et masquer les info de info-bar
-const angleUp = document.querySelector('.fa-angle-up');
-const angleDown = document.querySelector('.fa-chevron-down');
-const date = document.querySelector('.date');
-const title = document.querySelector('.title');
  
  //Cette fonction affiche le bloc Trier par
 function displayOrderBy() {
@@ -89,6 +88,35 @@ function hiddenOrderBy() {
     angleUp.style.display = 'none';
 }
 
+/*Trier le tableau media par ordre décroissant en fonction du nombre de likes 
+ou de date ou de titre*/
+// *function mediaOrder() {
+
+    //photographMedia[1].style.display = 'block';
+
+    /*for(let i = 0; i < popularChoice.length; i++) {
+        if(popularChoice[i] === popular) {
+            media.sort(function (a, b) {
+            return b.likes - a.likes;
+            });
+            return true;
+        }
+        else if(popularChoice[i] === date) {
+            media.sort(function (a, b) {
+                return b.date - a.date;
+            });
+            return true;
+        }
+        else if(popularChoice[i] === title) {
+            media.sort(function (a, b) {
+                return b.title - a.title;
+            });
+            return true;
+        }
+    }
+    return media;
+}*/
+
 //Ecouter les évenements quand on clique sur l'info-bar pour afficher ou masquer les éléments
 angleDown.addEventListener('click', displayOrderBy);
 angleUp.addEventListener('click', hiddenOrderBy);
@@ -99,13 +127,35 @@ async function init() {
     const photographerData = await getPhotographerData();
     console.log(photographerData);
     const photographer = photographerData[0];
-    const photographerMedia = photographerData[1];
-    //affiche les données d'un photographe
+    let photographerMedia = photographerData[1];
     displayPhotographerData(photographer);
     //Affiche le prix d'un photographe
     displayPhotographerPrice(photographer);
-    //Affiche les photos et vidéos d'un photographe
+    //Affiche les photos d'un photographe par défaut
     displayPhotographerMedia(photographerMedia);
-};
+
+    //Trier les médias en fonctions de la popularité
+    popular.addEventListener('click', function() {
+        photographerMedia.sort(function (a, b) {
+        return b.likes - a.likes;
+        });
+        const photographMedia = document.querySelectorAll('.photographer-media');
+        console.log(photographMedia);
+        photographMedia[0].style.display = 'none';
+        displayPhotographerMediaByPopular(photographerMedia);
+        //photographMedia[1].style.display = 'block';
+    });
+
+     //Trier les médias en fonction de la date
+     popular.addEventListener('click', function() {
+        photographerMedia.sort(function (a, b) {
+        return b.date - a.date;
+        });
+        const photographMedia = document.querySelectorAll('.photographer-media');
+        photographMedia[1].style.display = 'none';
+        displayPhotographerMediaByPopular(photographerMedia);
+        //photographMedia[1].style.display = 'block';
+    });
+}
 
 init();
