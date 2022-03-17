@@ -5,7 +5,7 @@ const date = document.querySelector('.date');
 const title = document.querySelector('.title');
 const popular = document.querySelector('.popular');
 const popularChoice = document.querySelectorAll('li');
-const photographerMedia = document.querySelectorAll('.photographer-media');
+const photographerMedia = document.querySelector('.photographer-media');
 
 //Récupérer toutes les données Json d'un photographe
 async function getPhotographerData() {
@@ -58,7 +58,7 @@ function displayPhotographerMedia(media) {
 
         const mediaModel = mediaPhotographerFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
-        photographerMedia[0].appendChild(mediaCardDOM);
+        photographerMedia.appendChild(mediaCardDOM);
     });
 };
 
@@ -69,7 +69,7 @@ function displayPhotographerMediaByPopular(media) {
 
         const mediaModel = photographerMediaByPopularFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOMPopular();
-        photographerMedia[1].appendChild(mediaCardDOM);
+        photographerMedia.appendChild(mediaCardDOM);
     });
 };
  
@@ -88,74 +88,86 @@ function hiddenOrderBy() {
     angleUp.style.display = 'none';
 }
 
-/*Trier le tableau media par ordre décroissant en fonction du nombre de likes 
-ou de date ou de titre*/
-// *function mediaOrder() {
-
-    //photographMedia[1].style.display = 'block';
-
-    /*for(let i = 0; i < popularChoice.length; i++) {
-        if(popularChoice[i] === popular) {
-            media.sort(function (a, b) {
-            return b.likes - a.likes;
-            });
-            return true;
-        }
-        else if(popularChoice[i] === date) {
-            media.sort(function (a, b) {
-                return b.date - a.date;
-            });
-            return true;
-        }
-        else if(popularChoice[i] === title) {
-            media.sort(function (a, b) {
-                return b.title - a.title;
-            });
-            return true;
-        }
-    }
-    return media;
-}*/
-
 //Ecouter les évenements quand on clique sur l'info-bar pour afficher ou masquer les éléments
 angleDown.addEventListener('click', displayOrderBy);
 angleUp.addEventListener('click', hiddenOrderBy);
 
 //Fonction principale qui lance toutes les fonctions 
 async function init() {
-    //Récupère les data des photographes
+    //Récupère les données des photographes
     const photographerData = await getPhotographerData();
-    console.log(photographerData);
     const photographer = photographerData[0];
-    let photographerMedia = photographerData[1];
+    //Contient les média d'un photographe
+    let photographMedia = photographerData[1];
     displayPhotographerData(photographer);
     //Affiche le prix d'un photographe
     displayPhotographerPrice(photographer);
     //Affiche les photos d'un photographe par défaut
-    displayPhotographerMedia(photographerMedia);
+    displayPhotographerMedia(photographMedia);
 
     //Trier les médias en fonctions de la popularité
     popular.addEventListener('click', function() {
-        photographerMedia.sort(function (a, b) {
-        return b.likes - a.likes;
+        totalLikes = 0;
+        photographerMedia.innerHTML = '';
+        //location.reload();//Recharger la page HTML
+        //Fonction de callback qui trie un tableau dans l'ordre décroissant
+        photographMedia.sort(function (a, b) {
+            return b.likes - a.likes;
         });
-        const photographMedia = document.querySelectorAll('.photographer-media');
-        console.log(photographMedia);
-        photographMedia[0].style.display = 'none';
-        displayPhotographerMediaByPopular(photographerMedia);
-        //photographMedia[1].style.display = 'block';
-    });
+        //Affiche les médias du plus populaire au moins populaire
+        displayPhotographerMediaByPopular(photographMedia);
+        });
+        
 
-     //Trier les médias en fonction de la date
-     popular.addEventListener('click', function() {
-        photographerMedia.sort(function (a, b) {
-        return b.date - a.date;
+     //Trier les médias en fonctions de la date
+     date.addEventListener('click', function() {
+        //Viderl'élément de ses médias
+        photographerMedia.innerHTML = '';
+        //Remettre le compteur des likes à zéro
+        totalLikes = 0;
+        //Fonction de callback qui trie un tableau de chaînes de caractères dans l'ordre croissant
+        photographMedia.sort(function (a, b) {
+            if (a.date < b.date)
+                return -1;
+            if (a.date > b.date )
+                return 1;
+            return 0;
         });
-        const photographMedia = document.querySelectorAll('.photographer-media');
-        photographMedia[1].style.display = 'none';
-        displayPhotographerMediaByPopular(photographerMedia);
-        //photographMedia[1].style.display = 'block';
-    });
+        displayPhotographerMediaByPopular(photographMedia);
+        });
+
+     //Trier les médias en fonctions du titre
+     title.addEventListener('click', function() {
+        totalLikes = 0;
+        photographerMedia.innerHTML = '';
+        //Fonction de callback qui trie un tableau
+        photographMedia.sort(function (a, b) {
+            if (a.title < b.title)
+                return -1;
+            if (a.title > b.title )
+                return 1;
+            return 0;
+        });
+        displayPhotographerMediaByPopular(photographMedia);
+        });
+    
+    //Afficher une lightbox quand on clique sur une média
+    const lightbox = document.querySelector('.lightbox');
+    const medias = document.querySelectorAll('.media');
+    console.log(medias);
+    const lightboxContainer = document.querySelector('.lightbox-container');
+
+    /*Ecouter les événements de tous les articles contenant les médias dans photographerMedia
+    en parcourant un tableau*/
+    medias.forEach(media => media.addEventListener('click', function() {
+        const image = document.createElement('img');
+        const src = media.getAttribute('src');
+        console.log(src);
+        image.setAttribute('src', src);
+        lightboxContainer.appendChild(image);
+        lightbox.style.display = 'block';
+    }));
+        
 }
 
 init();

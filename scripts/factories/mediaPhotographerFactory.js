@@ -5,6 +5,10 @@ function mediaPhotographerFactory(data) {
     const picture = `assets/photographers/${image}`;
     const film = `assets/photographers/${video}`;
 
+    function resetTotalLikes() {
+        totalLikes = 0;
+    }
+
     function getMediaCardDOM() {
         const photographerMedia = document.createElement('article');
         //Affichage des nombres de likes total et prix /jour
@@ -16,10 +20,12 @@ function mediaPhotographerFactory(data) {
 
         if(!extentionsMovie.exec(film)) {
             const img = document.createElement('img');
+            img.setAttribute('class', 'media');
             img.setAttribute('src', picture);
             photographerMedia.appendChild(img);
         } else {
             const movie = document.createElement('video');
+            movie.setAttribute('class', 'media');
             movie.setAttribute('controls', 'controls');//L'attribut controls permet d'affciher les boutons play et pause
             movie.setAttribute('src', film);
             movie.setAttribute('type', 'video/mp4');
