@@ -99,6 +99,15 @@ async function init() {
     const photographer = photographerData[0];
     //Contient les média d'un photographe
     let photographMedia = photographerData[1];
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxContainer = document.querySelector('.lightbox-container');
+    const lightboxCloseButton = document.querySelector('.lightbox-close');
+    const image = document.createElement('img');
+    const video = document.createElement('video');
+    const lightboxNextButton = document.querySelector('.lightbox-next');
+    const lightboxPrevButtton = document.querySelector('.lightbox-prev');
+    const extentionsMovie = /(\.mp4|\.ogg)$/i;
+
     displayPhotographerData(photographer);
     //Affiche le prix d'un photographe
     displayPhotographerPrice(photographer);
@@ -109,7 +118,6 @@ async function init() {
     popular.addEventListener('click', function() {
         totalLikes = 0;
         photographerMedia.innerHTML = '';
-        //location.reload();//Recharger la page HTML
         //Fonction de callback qui trie un tableau dans l'ordre décroissant
         photographMedia.sort(function (a, b) {
             return b.likes - a.likes;
@@ -150,24 +158,45 @@ async function init() {
         });
         displayPhotographerMediaByPopular(photographMedia);
         });
-    
-    //Afficher une lightbox quand on clique sur une média
-    const lightbox = document.querySelector('.lightbox');
-    const medias = document.querySelectorAll('.media');
-    console.log(medias);
-    const lightboxContainer = document.querySelector('.lightbox-container');
 
-    /*Ecouter les événements de tous les articles contenant les médias dans photographerMedia
+    //Afficher une lightbox quand on clique sur une média
+    /*Ecouter les événements de toutes les balises img ou video ayant la classe media
     en parcourant un tableau*/
+    const medias = document.querySelectorAll('.media');
     medias.forEach(media => media.addEventListener('click', function() {
-        const image = document.createElement('img');
+        //Accéder au contenu de src avec getAttribute
         const src = media.getAttribute('src');
-        console.log(src);
-        image.setAttribute('src', src);
-        lightboxContainer.appendChild(image);
+        //Vérifier si la média est une image ou une vidéo
+        if(src === extentionsMovie) {
+            video.setAttribute('controls', 'controls');
+            video.setAttribute('src', src);
+            video.setAttribute('type', 'video/mp4');
+            lightboxContainer.appendChild(video);
+           
+        }
+        else {
+            image.setAttribute('src', src);
+            lightboxContainer.appendChild(image);
+        }
+        //Afficher la lightbox
         lightbox.style.display = 'block';
+
+        //Ecouter l'événement click du bouton close
+        lightboxCloseButton.addEventListener('click', lightboxClose);
+        /*Ecouter l'événement click du bouton next
+        lightboxNextButton.addEventListener('click', function() {
+            lightboxContainer.innerHTML = "";
+            //Accéder au contenu de src avec getAttribute
+            const src = media.getAttribute('src');
+            image.setAttribute('src', src);
+            lightboxContainer.appendChild(image);
+        });*/
     }));
-        
+
+     //Fermer la lightbox
+     function lightboxClose() {
+        lightbox.style.display = 'none';
+    }
 }
 
 init();

@@ -5,10 +5,6 @@ function mediaPhotographerFactory(data) {
     const picture = `assets/photographers/${image}`;
     const film = `assets/photographers/${video}`;
 
-    function resetTotalLikes() {
-        totalLikes = 0;
-    }
-
     function getMediaCardDOM() {
         const photographerMedia = document.createElement('article');
         //Affichage des nombres de likes total et prix /jour
