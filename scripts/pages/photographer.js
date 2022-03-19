@@ -126,7 +126,6 @@ async function init() {
         displayPhotographerMediaByPopular(photographMedia);
         });
         
-
      //Trier les médias en fonctions de la date
      date.addEventListener('click', function() {
         //Viderl'élément de ses médias
@@ -163,7 +162,7 @@ async function init() {
     /*Ecouter les événements de toutes les balises img ou video ayant la classe media
     en parcourant un tableau*/
     const medias = document.querySelectorAll('.media');
-    medias.forEach(media => media.addEventListener('click', function() {
+    medias.forEach((media, index) => media.addEventListener('click', function() {
         //Accéder au contenu de src avec getAttribute
         const src = media.getAttribute('src');
         //Vérifier si la média est une image ou une vidéo
@@ -183,14 +182,41 @@ async function init() {
 
         //Ecouter l'événement click du bouton close
         lightboxCloseButton.addEventListener('click', lightboxClose);
-        /*Ecouter l'événement click du bouton next
+
+        //Ecouter l'événement click du bouton next
         lightboxNextButton.addEventListener('click', function() {
+            //Vider le contenu de lightboxContainer
             lightboxContainer.innerHTML = "";
-            //Accéder au contenu de src avec getAttribute
-            const src = media.getAttribute('src');
+            /*Si index est égal au nombre de médias total - 1
+            index passe à -1*/
+            if(index === (medias.length - 1)) {
+                index = -1;
+            }
+            //Incrémenter l'index de medias
+            index++;
+            medias[index];
+            //Ajouter l'image suivante dans la lightbox
+            const src = medias[index].getAttribute('src');
             image.setAttribute('src', src);
             lightboxContainer.appendChild(image);
-        });*/
+        });
+
+        //Ecouter l'événement click du bouton prev
+        lightboxPrevButtton.addEventListener('click', function() {
+            //Vider le contenu de lightboxContainer
+            lightboxContainer.innerHTML = "";
+            //Si index est égal à 0 index passe à -1
+            if(index === 0) {
+                index = medias.length;
+            }
+            //Incrémenter l'index de medias
+            index--;
+            medias[index];
+            //Ajouter l'image suivante dans la lightbox
+            const src = medias[index].getAttribute('src');
+            image.setAttribute('src', src);
+            lightboxContainer.appendChild(image);
+        });
     }));
 
      //Fermer la lightbox

@@ -51,12 +51,28 @@
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
+				<form id ="contact-form" action="#" method="get">
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label>Nom</label>
+						<input id ="last-name" type="text" name="lastName"/>
+            <p id="last-name-error"></p>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <div>
+						<label>Prénom</label>
+						<input id="first-name" type="text" name="firstName"/>
+            <p id="first-name-error"></p>
+					</div>
+          <div>
+						<label>Adresse mail</label>
+						<input id ="email" type="email" name="email"/>
+            <p id="email-error"></p>
+					</div>
+          <div>
+						<label>Message</label>
+						<textarea id="message" name="message"></textarea>
+            <p id="message-error"></p>
+					</div>
+          <button class="submit_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
@@ -64,6 +80,5 @@
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/factories/onePhotographerFactory.js"></script>
     <script src="/scripts/factories/mediaPhotographerFactory.js"></script>
-    <script src="/scripts/factories/lightboxFactory.js"></script>
   </body>
 </html>
