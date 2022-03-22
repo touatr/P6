@@ -11,6 +11,7 @@ function photographersFactory(data) {
         photographerLinkPage.setAttribute("href", "photographer.html?id="+id);
         const img = document.createElement( 'img' );//Créer un élement img
         img.setAttribute("src", picture)//Affecter une image et une src
+        img.setAttribute('alt', name);
         photographerLinkPage.appendChild(img);
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;

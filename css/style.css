@@ -160,7 +160,7 @@ h1 {
     display: flex;
 }
 
-.popular-angle i {
+.popular-angle em {
     margin-left: 1.5rem;
     margin-top: 3px;
 }
@@ -169,7 +169,7 @@ h1 {
     display: none;
 }
 
-.info-bar li, .popular-angle i {
+.info-bar li, .popular-angle em {
     cursor: pointer;
     padding-right: 1rem;
     font-size: larger;
@@ -222,7 +222,7 @@ h1 {
     cursor: pointer;
 }
 
-.popular-angleUp i {
+.popular-angleUp em {
     color: white;
     font-size: medium;
 }

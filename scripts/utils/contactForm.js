@@ -58,12 +58,21 @@ function firstNameChecked() {
         firstName.style.border = "1px solid red";
         return false;
     }
+    if(stringIsValid(firstName.value) === false) {
+        firstNameError.innerHTML = "Vous devez entrer un prénom valide !";
+        return false;
+    }
     else {
         firstNameError.innerHTML = "";
         firstName.style.border = 'none';
         return true;
     }
 }
+
+//fonction qui vérifie si le champ texte contient que des lettres
+function stringIsValid(value) {
+    return /[a-zA-Z]/.test(value);
+  }  
 
 function lastNameChecked() {
     const lastName = document.getElementById("last-name");
@@ -73,6 +82,10 @@ function lastNameChecked() {
         lastName.style.border = "1px solid red";
         return false;
     }
+    if(stringIsValid(lastName.value) === false) {
+        lastNameError.innerHTML = "Vous devez entrer un nom valide !";
+        return false;
+    }
     else {
         lastNameError.innerHTML = "";
         lastName.style.border = 'none';
@@ -80,12 +93,21 @@ function lastNameChecked() {
     }
 }
 
+//fonction qui vérifie le format d'une adresse mail s'il est valide
+function emailIsValid(value) {
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
+  }
+
 function emailChecked() {
     const email = document.getElementById("email");
     const emailError = document.getElementById("email-error");
     if(email.value == "") {
         emailError.innerHTML = "Veuillez entrer un mail svp !";
         email.style.border = "1px solid red";
+        return false;
+    }
+    if(emailIsValid(email.value) === false) {
+        emailError.innerHTML = "Veuillez entrez une adresse mail valide !";
         return false;
     }
     else {
@@ -102,6 +124,9 @@ function messageChecked() {
         messageError.innerHTML = "Veuillez entrer un message svp !";
         message.style.border = "1px solid red";
         return false;
+    }
+    if(message.value.length < 51) {
+        messageError.innerHTML = "Votre message doit contenir 50 caractères minimum !";
     }
     else {
         messageError.innerHTML = "";

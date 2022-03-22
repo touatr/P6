@@ -18,6 +18,7 @@ function mediaPhotographerFactory(data) {
             const img = document.createElement('img');
             img.setAttribute('class', 'media');
             img.setAttribute('src', picture);
+            img.setAttribute("alt", title);
             photographerMedia.appendChild(img);
         } else {
             const movie = document.createElement('video');
@@ -25,6 +26,7 @@ function mediaPhotographerFactory(data) {
             movie.setAttribute('controls', 'controls');//L'attribut controls permet d'affciher les boutons play et pause
             movie.setAttribute('src', film);
             movie.setAttribute('type', 'video/mp4');
+            movie.setAttribute('alt', title);
             photographerMedia.appendChild(movie);
         }
 
@@ -39,8 +41,9 @@ function mediaPhotographerFactory(data) {
         numberLikes.innerHTML = likes;
 
         mediaDescription.appendChild(numberLikes);
-        const heart = document.createElement('i');
+        const heart = document.createElement('em');
         heart.setAttribute('class', 'fa-solid fa-heart');
+        heart.setAttribute('aria-label', 'Click on heart like');
         mediaDescription.appendChild(heart);
         //Incrémenter le nombre de likes lorsque l'utilisateur clique sur le coeur
         heart.addEventListener('click', function() {//fonction de callback
@@ -109,8 +112,9 @@ function photographerMediaByPopularFactory(data) {
         numberLikes.innerHTML = likes;
 
         mediaDescription.appendChild(numberLikes);
-        const heart = document.createElement('i');
+        const heart = document.createElement('em');
         heart.setAttribute('class', 'fa-solid fa-heart');
+        heart.setAttribute('aria-label', 'Click on heart like');
         mediaDescription.appendChild(heart);
         //Incrémenter le nombre de likes lorsque l'utilisateur clique sur le coeur
         heart.addEventListener('click', function() {//fonction de callback

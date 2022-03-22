@@ -69,7 +69,7 @@ form label {
     font-size: 36px;
 }
 
-form div {
+form aside {
     display: flex;
     flex-direction: column;
     width: 100%;

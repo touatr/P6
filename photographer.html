@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -10,72 +10,74 @@
   </head>
   <body>
     <header>
-      <img src="assets/pictures/logo.png" class="logo" />
+      <img src="assets/pictures/logo.png" class="logo" alt="logo"/>
     </header>
     <main id="main">
-      <div id="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-        <aside class="info-bar">
+      <section id="photograph-header">
+        <button class="contact_button" onclick="displayModal()" aria-label="Modal opening">
+          Contactez-moi</button>
+        <nav class="info-bar" aria-label="Trier les media">
           <h3 id="trier-par">Trier Par</h3>
           <ul>
             <div class="popular-angle">
               <li class="popular">Popularité</li>
-              <i class="fa-solid fa-angle-up"></i>
-              <i class="fa-solid fa-chevron-down"></i>
+              <em class="fa-solid fa-angle-up"></em>
+              <em class="fa-solid fa-chevron-down"></em>
             </div>
             <li class="date">Date</li>
             <li class="title">Titre</li>
           </ul>
-        </aside>
-      </div>
+        </nav>
+      </section>
 
-      <div class="photographer-media">
-      </div>
+      <article class="photographer-media" aria-label="Afficher les media">
+      </article>
       <section class="lightbox">
-        <button class="lightbox-close"><i class="fas fa-times"></i></button>
-        <button class="lightbox-next"><i class="fas fa-angle-right"></i></button>
-        <button class="lightbox-prev"><i class="fas fa-angle-left"></i></button>
+        <button class="lightbox-close" aria-label="Lightbox closing"><em class="fas fa-times"></em></button>
+        <button class="lightbox-next" aria-label="Next media"><em class="fas fa-angle-right"></em></button>
+        <button class="lightbox-prev" aria-label="Prev media"><em class="fas fa-angle-left"></em></button>
         <aside class="lightbox-container">
         </aside>
       </section>
-      <article class="total-of-likes_bloc">
+      <article class="total-of-likes_bloc" aria-label="Total of likes">
         <div class="total-of-likes">
         </div>
-        <i class ="fa-solid fa-heart"></i>
+        <em class ="fa-solid fa-heart"></em>
         <aside class="price-day"></aside>
       </article>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
+    <section id="contact_modal" aria-hidden="true" role="dialog">
+			<article class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" onclick="closeModal()" 
+            alt="close" aria-label="Modal closing"/>
         </header>
 				<form id ="contact-form" action="#" method="get">
-					<div>
-						<label>Nom</label>
-						<input id ="last-name" type="text" name="lastName"/>
+					<aside>
+						<label for="last-name">Nom</label>
+						<input id ="last-name" type="text"/>
             <p id="last-name-error"></p>
-					</div>
-          <div>
-						<label>Prénom</label>
+          </aside>
+          <aside>
+						<label for="first-name">Prénom</label>
 						<input id="first-name" type="text" name="firstName"/>
             <p id="first-name-error"></p>
-					</div>
-          <div>
-						<label>Adresse mail</label>
+          </aside>
+          <aside>
+						<label for="email">Adresse mail</label>
 						<input id ="email" type="email" name="email"/>
             <p id="email-error"></p>
-					</div>
-          <div>
-						<label>Message</label>
-						<textarea id="message" name="message"></textarea>
+          </aside>
+          <aside>
+						<label for="message">Message</label>
+						<textarea id="message" name="message">Taper votre texte ici</textarea>
             <p id="message-error"></p>
-					</div>
-          <button class="submit_button">Envoyer</button>
+          </aside>
+          <button class="submit_button" aria-label="Message sending">Envoyer</button>
 				</form>
-			</div>
-		</div>
+			</article>
+    </section>
     <script src="/scripts/utils/contactForm.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/factories/onePhotographerFactory.js"></script>

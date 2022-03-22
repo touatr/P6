@@ -21,6 +21,7 @@ function onePhotographerFactory(data) {
         description.appendChild(button);
         const img = document.createElement('img');
         img.setAttribute("src", picture);
+        img.setAttribute("alt", name);
         description.appendChild(img);
         return (description);
     }

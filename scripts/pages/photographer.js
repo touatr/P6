@@ -106,7 +106,6 @@ async function init() {
     const video = document.createElement('video');
     const lightboxNextButton = document.querySelector('.lightbox-next');
     const lightboxPrevButtton = document.querySelector('.lightbox-prev');
-    const extentionsMovie = /(\.mp4|\.ogg)$/i;
 
     displayPhotographerData(photographer);
     //Affiche le prix d'un photographe
@@ -163,23 +162,10 @@ async function init() {
     en parcourant un tableau*/
     const medias = document.querySelectorAll('.media');
     medias.forEach((media, index) => media.addEventListener('click', function() {
-        //Accéder au contenu de src avec getAttribute
-        const src = media.getAttribute('src');
-        //Vérifier si la média est une image ou une vidéo
-        if(src === extentionsMovie) {
-            video.setAttribute('controls', 'controls');
-            video.setAttribute('src', src);
-            video.setAttribute('type', 'video/mp4');
-            lightboxContainer.appendChild(video);
-           
-        }
-        else {
-            image.setAttribute('src', src);
-            lightboxContainer.appendChild(image);
-        }
         //Afficher la lightbox
         lightbox.style.display = 'block';
-
+        //Remplir la lightbox aves les médias
+        fillLightbox(media, lightboxContainer);
         //Ecouter l'événement click du bouton close
         lightboxCloseButton.addEventListener('click', lightboxClose);
 
@@ -195,10 +181,24 @@ async function init() {
             //Incrémenter l'index de medias
             index++;
             medias[index];
-            //Ajouter l'image suivante dans la lightbox
-            const src = medias[index].getAttribute('src');
-            image.setAttribute('src', src);
-            lightboxContainer.appendChild(image);
+            fillLightbox(medias[index], lightboxContainer);
+        });
+
+        //Ecouter l'événement keydown du bouton next de la lightbox
+        document.addEventListener('keydown', event => {
+            if(event.keyCode === 39) {
+                //Vider le contenu de lightboxContainer
+                lightboxContainer.innerHTML = "";
+                /*Si index est égal au nombre de médias total - 1
+                index passe à -1*/
+                if(index === (medias.length - 1)) {
+                    index = -1;
+                }
+                //Incrémenter l'index de medias
+                index++;
+                medias[index];
+                fillLightbox(medias[index], lightboxContainer);
+            } 
         });
 
         //Ecouter l'événement click du bouton prev
@@ -212,16 +212,56 @@ async function init() {
             //Incrémenter l'index de medias
             index--;
             medias[index];
-            //Ajouter l'image suivante dans la lightbox
-            const src = medias[index].getAttribute('src');
-            image.setAttribute('src', src);
-            lightboxContainer.appendChild(image);
+            fillLightbox(medias[index], lightboxContainer);
+        });
+
+        //Ecouter l'événement keydown du bouton close de la lightbox
+        document.addEventListener('keydown', event => {
+            if(event.keyCode === 27) {
+                lightboxClose();
+            }
+        });
+
+        //Ecouter l'événement keydown du bouton prev de la lightbox
+        document.addEventListener('keydown', e => {
+            if(e.keyCode === 37) {
+                //Vider le contenu de lightboxContainer
+                lightboxContainer.innerHTML = "";
+            //Si index est égal à 0 index passe à -1
+            if(index === 0) {
+                index = medias.length;
+            }
+            //Incrémenter l'index de medias
+            index--;
+            medias[index];
+            fillLightbox(medias[index], lightboxContainer);
+            }
         });
     }));
 
      //Fermer la lightbox
      function lightboxClose() {
         lightbox.style.display = 'none';
+        lightboxContainer.innerHTML = "";
+    }
+
+    //Remplir la lightbox avec les media
+    function fillLightbox(media, lightboxContainer) {
+        //Accéder au contenu de src avec getAttribute
+        const src = media.getAttribute('src');
+        const typeMedia = media.getAttribute('type');
+        //Vérifier si la média est une image ou une vidéo
+        if(typeMedia === "video/mp4") {
+            video.setAttribute('controls', 'controls');
+            video.setAttribute('src', src);
+            video.setAttribute('type', 'video/mp4');
+            lightboxContainer.appendChild(video);
+           
+        }
+        else {
+            image.setAttribute('src', src);
+            lightboxContainer.appendChild(image);
+        }
     }
 }
 
