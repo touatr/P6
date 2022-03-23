@@ -219,6 +219,7 @@ async function init() {
         document.addEventListener('keydown', event => {
             if(event.keyCode === 27) {
                 lightboxClose();
+                closeModal();
             }
         });
 
@@ -266,3 +267,9 @@ async function init() {
 }
 
 init();
+
+//Fermer la modale
+function closeModal() {
+    const modal = document.getElementById("contact_modal");
+    modal.style.display = "none";
+}

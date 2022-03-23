@@ -32,6 +32,14 @@ submitButton.addEventListener('click', function(event) {
     }
 });
 
+/*Fermer la modale avec le bouton echap pour l'accessibilité des personnes handicapés
+document.addEventListener('keydown', e => {
+    console.log(e);
+    if(e.keyCode === 27) {
+        closeModal();
+    }
+})*/
+
 //Ecouter l'événement click du champ nom
 const lastName = document.getElementById('last-name');
 lastName.addEventListener('input', lastNameChecked);
