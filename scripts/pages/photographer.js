@@ -24,7 +24,6 @@ async function getPhotographerData() {
     // étape 2 : filtrer les médias d'un photographe grâce à son id
     let media = photographersData.media.filter((pictures) => pictures.photographerId == id );
 
-    //Déclarer un tableau contenant deux valeurs
     let photographerData = [photographer, media];
     return photographerData;
 }

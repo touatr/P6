@@ -7,6 +7,7 @@ function mediaPhotographerFactory(data) {
 
     function getMediaCardDOM() {
         const photographerMedia = document.createElement('article');
+        photographerMedia.setAttribute('tabindex', '0')
         //Affichage des nombres de likes total et prix /jour
         let totalOfLikes = document.querySelector('.total-of-likes');
         totalLikes = totalLikes + likes
