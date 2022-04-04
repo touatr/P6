@@ -32,6 +32,27 @@ submitButton.addEventListener('click', function(event) {
     }
 });
 
+submitButton.addEventListener('keydown', function(event) {
+    if(event.key === "Enter")
+    event.preventDefault();
+    //Vérifier si les champs ne sont pas vides
+    if(lastNameChecked() &&
+       firstNameChecked() &&
+       emailChecked() &&
+       messageChecked()) {
+        console.log("Merci pour vore message !");
+        const firstName = document.getElementById('first-name');
+        console.log(firstName.value);
+        const lastName = document.getElementById('last-name');
+        console.log(lastName.value);
+        const email = document.getElementById('email');
+        console.log(email.value);
+        const message = document.getElementById('message');
+        console.log(message.value);
+        closeModal();
+    }
+});
+
 /*Fermer la modale avec le bouton echap pour l'accessibilité des personnes handicapés
 document.addEventListener('keydown', e => {
     console.log(e);

@@ -112,7 +112,7 @@ h1 {
 }
 
 #photograph-header img {
-    margin-left: 22rem;
+    margin-left: 16rem;
 }
 
 #photograph-header .info-bar {
@@ -263,7 +263,7 @@ h1 {
 }
 
 .lightbox {
-    background: rgba(0, 0, 0, 0.9);
+    background: white;
     position: fixed;
     top: 0;
     left: 0;
@@ -277,9 +277,9 @@ h1 {
     position: fixed;
     z-index: 2;
     border: none;
-    font-size: xx-large;
-    color: white;
-    background: #901C1C;
+    font-size: 4rem;
+    color: #901C1C;
+    background: white;
     cursor: pointer;
     transition: 2000ms;
 }
@@ -290,12 +290,17 @@ h1 {
 }
 
 .lightbox .lightbox-next {
-    right: 0;
+    right: 6rem;
     margin-top: -12px;
 }
 
+.lightbox .lightbox-prev {
+    left: 6rem;
+}
+
 .lightbox .lightbox-close {
-    right: 0;
+    right: 6rem;
+    top: 3rem;
 }
 
 .lightbox-container {
@@ -304,13 +309,18 @@ h1 {
 }
 
 .lightbox-container img {
-   width: 100%;
+   width: 80%;
+   margin-left: 7rem;
    height: 100%;
    overflow: scroll;/*Scroller l'image*/
    object-fit: cover;
 }
 
 .lightbox-container video {
+    width: 80%;
+    margin-left: 7rem;
     height: 100%;
     overflow: scroll;
 }
+
+

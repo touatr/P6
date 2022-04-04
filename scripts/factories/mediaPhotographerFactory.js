@@ -7,7 +7,7 @@ function mediaPhotographerFactory(data) {
 
     function getMediaCardDOM() {
         const photographerMedia = document.createElement('article');
-        photographerMedia.setAttribute('tabindex', '0')
+        //photographerMedia.setAttribute('tabindex', '0')
         //Affichage des nombres de likes total et prix /jour
         let totalOfLikes = document.querySelector('.total-of-likes');
         totalLikes = totalLikes + likes
@@ -20,6 +20,7 @@ function mediaPhotographerFactory(data) {
             img.setAttribute('class', 'media');
             img.setAttribute('src', picture);
             img.setAttribute("alt", title);
+            img.setAttribute('tabindex', '0');
             photographerMedia.appendChild(img);
         } else {
             const movie = document.createElement('video');
@@ -28,6 +29,7 @@ function mediaPhotographerFactory(data) {
             movie.setAttribute('src', film);
             movie.setAttribute('type', 'video/mp4');
             movie.setAttribute('alt', title);
+            movie.setAttribute('tabindex', '0');
             photographerMedia.appendChild(movie);
         }
 
@@ -45,9 +47,17 @@ function mediaPhotographerFactory(data) {
         const heart = document.createElement('em');
         heart.setAttribute('class', 'fa-solid fa-heart');
         heart.setAttribute('aria-label', 'Click on heart like');
+        heart.setAttribute('tabindex', '0');
         mediaDescription.appendChild(heart);
         //Incrémenter le nombre de likes lorsque l'utilisateur clique sur le coeur
         heart.addEventListener('click', function() {//fonction de callback
+            likes++;
+            totalLikes++;
+            numberLikes.innerHTML = likes;
+            totalOfLikes.innerHTML = totalLikes;
+        });
+        heart.addEventListener('keydown', function(event) {//fonction de callback
+            if(event.key === "Enter")
             likes++;
             totalLikes++;
             numberLikes.innerHTML = likes;
@@ -83,6 +93,7 @@ function photographerMediaByPopularFactory(data) {
 
     function getMediaCardDOMPopular() {
         const photographerMedia = document.createElement('article');
+        //photographerMedia.setAttribute('tabindex', '0')
         //Affichage des nombres de likes total et prix /jour
         let totalOfLikes = document.querySelector('.total-of-likes');
         totalLikes = totalLikes + likes
@@ -92,13 +103,19 @@ function photographerMediaByPopularFactory(data) {
         let extentionsMovie = /(\.mp4|\.ogg)$/i;
         if(!extentionsMovie.exec(film)) {
             const img = document.createElement('img');
+            img.setAttribute('class', 'media');
             img.setAttribute('src', picture);
+            img.setAttribute("alt", title);
+            img.setAttribute('tabindex', '0');
             photographerMedia.appendChild(img);
         } else {
             const movie = document.createElement('video');
+            movie.setAttribute('class', 'media');
             movie.setAttribute('controls', 'controls');//L'attribut controls permet d'affciher les boutons play et pause
             movie.setAttribute('src', film);
             movie.setAttribute('type', 'video/mp4');
+            movie.setAttribute('alt', title);
+            movie.setAttribute('tabindex', '0');
             photographerMedia.appendChild(movie);
         }
 
@@ -116,9 +133,17 @@ function photographerMediaByPopularFactory(data) {
         const heart = document.createElement('em');
         heart.setAttribute('class', 'fa-solid fa-heart');
         heart.setAttribute('aria-label', 'Click on heart like');
+        heart.setAttribute('tabindex', '0');
         mediaDescription.appendChild(heart);
         //Incrémenter le nombre de likes lorsque l'utilisateur clique sur le coeur
         heart.addEventListener('click', function() {//fonction de callback
+            likes++;
+            totalLikes++;
+            numberLikes.innerHTML = likes;
+            totalOfLikes.innerHTML = totalLikes;
+        });
+        heart.addEventListener('keydown', function(event) {//fonction de callback
+            if(event.key === "Enter")
             likes++;
             totalLikes++;
             numberLikes.innerHTML = likes;
