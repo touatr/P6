@@ -90,7 +90,8 @@ angleUp.addEventListener('click', function() {
 
 //Ecouter les événements quand on tabule sur l'info-bar pour afficher ou masquer les éléments
 angleDown.addEventListener('keydown', function(event) {
-    if(event.key === "Enter")
+    const code = event.keyCode;
+    if(code === 13)
     date.style.display = 'block';
     title.style.display = 'block';
     angleDown.style.display = 'none';
@@ -98,7 +99,8 @@ angleDown.addEventListener('keydown', function(event) {
 });
 
 angleUp.addEventListener('keydown', function(event) {
-    if(event.key === "Enter")
+    const code = event.keyCode;
+    if(code === 13)
     date.style.display = 'none';
     title.style.display = 'none';
     angleDown.style.display = 'block';
@@ -127,6 +129,7 @@ async function init() {
     displayPhotographerMedia(photographMedia);
     //Afficher la lighbox
     lightboxDisplay();
+    //Affiche la lightbox avec entrer
     lightboxDisplayTabindex();
 
     //Trier les médias en fonctions de la popularité
@@ -148,20 +151,21 @@ async function init() {
 
         //Trier les médias en fonctions de la popularité
         popular.addEventListener('keydown', function(event) {
-        if(event.key === "Enter")
-        popular.innerHTML = "Popularité";
-        date.innerHTML = "Date";
-        title.innerHTML = "Titre";
-        totalLikes = 0;
-        photographerMedia.innerHTML = '';
-        //Fonction de callback qui trie un tableau dans l'ordre décroissant
-        photographMedia.sort(function (a, b) {
-            return b.likes - a.likes;
-        });
-        //Affiche les médias du plus populaire au moins populaire
-        displayPhotographerMediaByPopular(photographMedia);
-        lightboxDisplay();
-        lightboxDisplayTabindex();
+            totalLikes = 0;
+            if(event.key === "Enter") {
+                popular.innerHTML = "Popularité";
+                date.innerHTML = "Date";
+                title.innerHTML = "Titre";
+                photographerMedia.innerHTML = '';
+                //Fonction de callback qui trie un tableau dans l'ordre décroissant
+                photographMedia.sort(function (a, b) {
+                    return b.likes - a.likes;
+                });
+                //Affiche les médias du plus populaire au moins populaire
+                displayPhotographerMediaByPopular(photographMedia);
+                lightboxDisplay();
+                lightboxDisplayTabindex();
+            }
         });
         
      //Trier les médias en fonctions de la date
@@ -181,32 +185,33 @@ async function init() {
                 return 1;
             return 0;
         });
-        displayPhotographerMediaByPopular(photographMedia);
-        lightboxDisplay();
-        lightboxDisplayTabindex();
+            displayPhotographerMediaByPopular(photographMedia);
+            lightboxDisplay();
+            lightboxDisplayTabindex();
         });
 
          //Trier les médias en fonctions de la date
         date.addEventListener('keydown', function(event) {
-        if(event.key === "Enter")
-        popular.innerHTML = "Date";
-        date.innerHTML = "Popularité";
-        title.innerHTML = "Titre";
-        //Viderl'élément de ses médias
-        photographerMedia.innerHTML = '';
-        //Remettre le compteur des likes à zéro
-        totalLikes = 0;
-        //Fonction de callback qui trie un tableau de chaînes de caractères dans l'ordre croissant
-        photographMedia.sort(function (a, b) {
-            if (a.date < b.date)
-                return -1;
-            if (a.date > b.date )
-                return 1;
-            return 0;
-        });
-        displayPhotographerMediaByPopular(photographMedia);
-        lightboxDisplay();
-        lightboxDisplayTabindex();
+            //Remettre le compteur des likes à zéro
+            totalLikes = 0;
+            if(event.key === "Enter") {
+                popular.innerHTML = "Date";
+                date.innerHTML = "Popularité";
+                title.innerHTML = "Titre";
+                //Viderl'élément de ses médias
+                photographerMedia.innerHTML = '';
+                //Fonction de callback qui trie un tableau de chaînes de caractères dans l'ordre croissant
+                photographMedia.sort(function (a, b) {
+                    if (a.date < b.date)
+                        return -1;
+                    if (a.date > b.date )
+                        return 1;
+                    return 0;
+                });
+            }
+            displayPhotographerMediaByPopular(photographMedia);
+            lightboxDisplay();
+            lightboxDisplayTabindex();
         });
 
      //Trier les médias en fonctions du titre
@@ -231,28 +236,30 @@ async function init() {
 
         //Trier les médias en fonctions du titre
         title.addEventListener('keydown', function(event) {
-        if(event.key === "Enter")
-        popular.innerHTML = "Titre";
-        date.innerHTML = "Date";
-        title.innerHTML = "Popularité";
-       totalLikes = 0;
-       photographerMedia.innerHTML = '';
-       //Fonction de callback qui trie un tableau
-       photographMedia.sort(function (a, b) {
-           if (a.title < b.title)
-               return -1;
-           if (a.title > b.title )
-               return 1;
-           return 0;
-       });
-       displayPhotographerMediaByPopular(photographMedia);
-       lightboxDisplay();
-       lightboxDisplayTabindex();
-       });
+            //Remettre le compteur des likes à zéro
+            totalLikes = 0;
+            if(event.key === "Enter") {     
+                popular.innerHTML = "Titre";
+                date.innerHTML = "Date";
+                title.innerHTML = "Popularité";
+                photographerMedia.innerHTML = '';
+                //Fonction de callback qui trie un tableau
+                photographMedia.sort(function (a, b) {
+                    if (a.title < b.title)
+                        return -1;
+                    if (a.title > b.title )
+                        return 1;
+                    return 0;
+                });
+            }
+        displayPhotographerMediaByPopular(photographMedia);
+        lightboxDisplay();
+        lightboxDisplayTabindex();
+        });
 
     //Afficher une lightbox quand on clique sur une média
-        /*Ecouter les événements de toutes les balises img ou video ayant la classe media
-        en parcourant un tableau*/
+    /*Ecouter les événements de toutes les balises img ou video ayant la classe media
+    en parcourant un tableau*/
     function lightboxDisplay() {
         const medias = document.querySelectorAll('.media');
         medias.forEach((media, index) => media.addEventListener('click', function() {
@@ -260,6 +267,10 @@ async function init() {
             lightbox.style.display = 'block';
             //Remplir la lightbox aves les médias
             fillLightbox(media, lightboxContainer);
+             //Affichage du titre de chaque média
+             const mediaTitle = document.querySelector('.title-media-lightbox');
+             mediaTitle.innerHTML = photographMedia[index].title;
+             lightbox.appendChild(mediaTitle);
             //Ecouter l'événement click du bouton close
             lightboxCloseButton.addEventListener('click', lightboxClose);
 
@@ -276,6 +287,11 @@ async function init() {
                 index++;
                 medias[index];
                 fillLightbox(medias[index], lightboxContainer);
+                 //Affichage du titre de chaque média
+                const mediaTitle = document.querySelector('.title-media-lightbox');
+                mediaTitle.innerHTML = "";
+                mediaTitle.innerHTML = photographMedia[index].title;
+                lightbox.appendChild(mediaTitle);
             });
 
             //Ecouter l'événement keydown du bouton next de la lightbox
@@ -292,6 +308,11 @@ async function init() {
                     index++;
                     medias[index];
                     fillLightbox(medias[index], lightboxContainer);
+                     //Affichage du titre de chaque média
+                const mediaTitle = document.querySelector('.title-media-lightbox');
+                mediaTitle.innerHTML = "";
+                mediaTitle.innerHTML = photographMedia[index].title;
+                lightbox.appendChild(mediaTitle);
                 } 
             });
 
@@ -307,6 +328,11 @@ async function init() {
                 index--;
                 medias[index];
                 fillLightbox(medias[index], lightboxContainer);
+                 //Affichage du titre de chaque média
+                 const mediaTitle = document.querySelector('.title-media-lightbox');
+                 mediaTitle.innerHTML = "";
+                 mediaTitle.innerHTML = photographMedia[index].title;
+                 lightbox.appendChild(mediaTitle);
             });
 
             //Ecouter l'événement keydown du bouton close de la lightbox
@@ -330,6 +356,11 @@ async function init() {
                 index--;
                 medias[index];
                 fillLightbox(medias[index], lightboxContainer);
+                 //Affichage du titre de chaque média
+                 const mediaTitle = document.querySelector('.title-media-lightbox');
+                 mediaTitle.innerHTML = "";
+                 mediaTitle.innerHTML = photographMedia[index].title;
+                 lightbox.appendChild(mediaTitle);
                 }
             });
         })); 
@@ -339,31 +370,17 @@ async function init() {
     function lightboxDisplayTabindex() {
         const medias = document.querySelectorAll('.media');
         medias.forEach((media, index) => media.addEventListener('keydown', function(event) {
-            if(event.key === "Enter")
-            //Vider le contenu de lightboxContainer
-            lightboxContainer.innerHTML = "";
-            //Afficher la lightbox
-            lightbox.style.display = 'block';
-            //Remplir la lightbox aves les médias
-            fillLightbox(media, lightboxContainer);
-            //Ecouter l'événement click du bouton close
-            lightboxCloseButton.addEventListener('click', lightboxClose);
-
-            //Ecouter l'événement click du bouton next
-            lightboxNextButton.addEventListener('click', function() {
-                //Vider le contenu de lightboxContainer
-                lightboxContainer.innerHTML = "";
-                /*Si index est égal au nombre de médias total - 1
-                index passe à -1*/
-                if(index === (medias.length - 1)) {
-                    index = -1;
-                }
-                //Incrémenter l'index de medias
-                index++;
-                medias[index];
-                fillLightbox(medias[index], lightboxContainer);
-            });
-
+            if(event.key === "Enter") {
+                //Afficher la lightbox
+             lightbox.style.display = 'block';
+             //Remplir la lightbox aves les médias
+             fillLightbox(media, lightboxContainer);
+              //Affichage du titre de chaque média
+              const mediaTitle = document.querySelector('.title-media-lightbox');
+              mediaTitle.innerHTML = "";
+              mediaTitle.innerHTML = photographMedia[index].title;
+              lightbox.appendChild(mediaTitle);
+            }
             //Ecouter l'événement keydown du bouton next de la lightbox
             document.addEventListener('keydown', event => {
                 if(event.key === "ArrowRight") {
@@ -378,31 +395,13 @@ async function init() {
                     index++;
                     medias[index];
                     fillLightbox(medias[index], lightboxContainer);
+                     //Affichage du titre de chaque média
+                const mediaTitle = document.querySelector('.title-media-lightbox');
+                mediaTitle.innerHTML = "";
+                mediaTitle.innerHTML = photographMedia[index].title;
+                lightbox.appendChild(mediaTitle);
                 } 
             });
-
-            //Ecouter l'événement click du bouton prev
-            lightboxPrevButtton.addEventListener('click', function() {
-                //Vider le contenu de lightboxContainer
-                lightboxContainer.innerHTML = "";
-                //Si index est égal à 0 index passe à -1
-                if(index === 0) {
-                    index = medias.length;
-                }
-                //Incrémenter l'index de medias
-                index--;
-                medias[index];
-                fillLightbox(medias[index], lightboxContainer);
-            });
-
-            //Ecouter l'événement keydown du bouton close de la lightbox
-            document.addEventListener('keydown', event => {
-                if(event.key === "Escape") {
-                    lightboxClose();
-                    closeModal();
-                }
-            });
-
             //Ecouter l'événement keydown du bouton prev de la lightbox
             document.addEventListener('keydown', e => {
                 if(e.key === "ArrowLeft") {
@@ -416,10 +415,22 @@ async function init() {
                 index--;
                 medias[index];
                 fillLightbox(medias[index], lightboxContainer);
+                 //Affichage du titre de chaque média
+                 const mediaTitle = document.querySelector('.title-media-lightbox');
+                 mediaTitle.innerHTML = "";
+                 mediaTitle.innerHTML = photographMedia[index].title;
+                 lightbox.appendChild(mediaTitle);
+                }
+            });
+             //Ecouter l'événement keydown du bouton close de la lightbox
+             document.addEventListener('keydown', event => {
+                if(event.key === "Escape") {
+                    lightboxClose();
+                    closeModal();
                 }
             });
         }));
-    } 
+    }
 
      //Fermer la lightbox
      function lightboxClose() {
@@ -438,7 +449,6 @@ async function init() {
             video.setAttribute('src', src);
             video.setAttribute('type', 'video/mp4');
             lightboxContainer.appendChild(video);
-           
         }
         else {
             image.setAttribute('src', src);

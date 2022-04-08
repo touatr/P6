@@ -15,18 +15,18 @@
     <main id="main">
       <section id="photograph-header">
         <button class="contact_button" onclick="displayModal()" aria-label="Modal opening"
-        tabindex="0">
+        tabindex="1">
           Contactez-moi</button>
-        <nav class="info-bar" aria-label="Trier les media" tabindex="0">
+        <nav class="info-bar" aria-label="Trier les media" tabindex="2">
           <h3 id="trier-par">Trier Par</h3>
           <ul class="info-bar-ul">
-            <div class="popular-angle">
-              <li class="popular" tabindex="0">Popularité</li>
-              <em class="fa-solid fa-angle-up" tabindex="0"></em>
-              <em class="fa-solid fa-chevron-down" tabindex="0"></em>
+            <div class="popular-angle" tabindex="4">
+              <li class="popular" tabindex="5">Popularité</li>
+              <em class="fa-solid fa-angle-up" tabindex="3"></em>
+              <em class="fa-solid fa-chevron-down" tabindex="3"></em>
             </div>
-            <li class="date" tabindex="0">Date</li>
-            <li class="title" tabindex="0">Titre</li>
+            <li class="date" tabindex="6">Date</li>
+            <li class="title" tabindex="7">Titre</li>
           </ul>
         </nav>
       </section>
@@ -38,9 +38,10 @@
         <button class="lightbox-next" aria-label="Next media"><em class="fas fa-angle-right"></em></button>
         <button class="lightbox-prev" aria-label="Prev media"><em class="fas fa-angle-left"></em></button>
         <aside class="lightbox-container">
+          <h3 class="title-media-lightbox"></h3>
         </aside>
       </section>
-      <article class="total-of-likes_bloc" aria-label="Total of likes" tabindex="0">
+      <article class="total-of-likes_bloc" aria-label="Total of likes">
         <div class="total-of-likes">
         </div>
         <em class ="fa-solid fa-heart"></em>

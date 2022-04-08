@@ -7,7 +7,6 @@ function mediaPhotographerFactory(data) {
 
     function getMediaCardDOM() {
         const photographerMedia = document.createElement('article');
-        //photographerMedia.setAttribute('tabindex', '0')
         //Affichage des nombres de likes total et prix /jour
         let totalOfLikes = document.querySelector('.total-of-likes');
         totalLikes = totalLikes + likes
@@ -20,7 +19,7 @@ function mediaPhotographerFactory(data) {
             img.setAttribute('class', 'media');
             img.setAttribute('src', picture);
             img.setAttribute("alt", title);
-            img.setAttribute('tabindex', '0');
+            img.setAttribute('tabindex', '8');
             photographerMedia.appendChild(img);
         } else {
             const movie = document.createElement('video');
@@ -29,15 +28,17 @@ function mediaPhotographerFactory(data) {
             movie.setAttribute('src', film);
             movie.setAttribute('type', 'video/mp4');
             movie.setAttribute('alt', title);
-            movie.setAttribute('tabindex', '0');
+            movie.setAttribute('tabindex', '8');
             photographerMedia.appendChild(movie);
         }
 
         //Création du bloc description media
         const mediaDescription = document.createElement('div');
         mediaDescription.setAttribute('class', 'media-description');
+        mediaDescription.setAttribute('tabindex', "8");
         photographerMedia.appendChild(mediaDescription);
         const h3 = document.createElement('h3');
+        h3.setAttribute('class', 'media-title');
         h3.textContent = title;
         mediaDescription.appendChild(h3);
         let numberLikes = document.createElement('p');
@@ -47,8 +48,8 @@ function mediaPhotographerFactory(data) {
         const heart = document.createElement('em');
         heart.setAttribute('class', 'fa-solid fa-heart');
         heart.setAttribute('aria-label', 'Click on heart like');
-        heart.setAttribute('tabindex', '0');
         mediaDescription.appendChild(heart);
+        heart.setAttribute('tabindex', "8");
         //Incrémenter le nombre de likes lorsque l'utilisateur clique sur le coeur
         heart.addEventListener('click', function() {//fonction de callback
             likes++;
@@ -106,7 +107,7 @@ function photographerMediaByPopularFactory(data) {
             img.setAttribute('class', 'media');
             img.setAttribute('src', picture);
             img.setAttribute("alt", title);
-            img.setAttribute('tabindex', '0');
+            img.setAttribute('tabindex', '8');
             photographerMedia.appendChild(img);
         } else {
             const movie = document.createElement('video');
@@ -115,13 +116,14 @@ function photographerMediaByPopularFactory(data) {
             movie.setAttribute('src', film);
             movie.setAttribute('type', 'video/mp4');
             movie.setAttribute('alt', title);
-            movie.setAttribute('tabindex', '0');
+            movie.setAttribute('tabindex', '8');
             photographerMedia.appendChild(movie);
         }
 
         //Création du bloc description media
         const mediaDescription = document.createElement('div');
         mediaDescription.setAttribute('class', 'media-description');
+        mediaDescription.setAttribute('tabundex', "8");
         photographerMedia.appendChild(mediaDescription);
         const h3 = document.createElement('h3');
         h3.textContent = title;
@@ -133,8 +135,9 @@ function photographerMediaByPopularFactory(data) {
         const heart = document.createElement('em');
         heart.setAttribute('class', 'fa-solid fa-heart');
         heart.setAttribute('aria-label', 'Click on heart like');
-        heart.setAttribute('tabindex', '0');
+        heart.setAttribute('tabindex', '8');
         mediaDescription.appendChild(heart);
+
         //Incrémenter le nombre de likes lorsque l'utilisateur clique sur le coeur
         heart.addEventListener('click', function() {//fonction de callback
             likes++;
