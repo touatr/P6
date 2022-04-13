@@ -25,7 +25,43 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 12rem;
+    margin-left: 6rem;
+}
+
+@media(max-width:1300px) {
+    .contact_button {
+        margin-left: 4rem;
+    }
+}
+
+@media(max-width:1200px) {
+    .contact_button {
+        margin-left: 2rem;
+    }
+}
+
+@media(max-width:1160px) {
+    .contact_button {
+        margin-left: 0rem;
+    }
+}
+
+@media(max-width:1140px) {
+    .contact_button {
+        margin-left: -2rem;
+    }
+}
+
+@media(max-width:1120px) {
+    .contact_button {
+        margin-left: -4rem;
+    }
+}
+
+@media(max-width:870px) {
+    .contact_button {
+        margin-left: -6rem;
+    }
 }
 
 .modal {
